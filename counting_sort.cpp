@@ -35,3 +35,39 @@ int main()
         cout << b[i] << " ";
     }
 }
+// counting sort
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n, k = 0;
+    cin >> n;
+    int a[n + 1], b[n + 1] = {0};
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+        if (a[i] > k)
+        {
+            k = a[i];
+        }
+    }
+    int c[k] = {0};
+    for (int i = 1; i <= n; i++)
+    {
+        c[a[i]]++;
+    }
+    for (int i = 1; i <= k; i++)
+    {
+        c[i] += c[i - 1];
+    }
+    for (int i = n; i > 0; i--)
+    {
+        b[c[a[i]]] = a[i];
+        c[a[i]]--;
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        cout << b[i] << " ";
+    }
+}
